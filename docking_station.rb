@@ -2,6 +2,6 @@ require './bike'
 
 class DockingStation
   def release_bike
-    Bike.new
+    bike = Bike.new
   end
 end

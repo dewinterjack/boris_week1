@@ -1,3 +1,5 @@
-require "rspec"
+class DockingStation
+  
+end
 
 puts "Boris Bike"

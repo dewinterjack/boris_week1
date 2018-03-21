@@ -17,7 +17,9 @@ class DockingStation
     @bike = bike
   end
 
+# Is there a bike in the docking station?
   def empty?
     return @bike == nil ? true : false
   end
+
 end

@@ -6,3 +6,4 @@ docking_station = DockingStation.new
 
 bike = docking_station.release_bike
 bike.working?
+puts docking_station.empty?

@@ -8,10 +8,6 @@ class DockingStation
     @docked = true
   end
 
-  def remove_bike
-    @bike = nil
-  end
-
   def release_bike
     # Nothing docked? Raise exception, otherwise release a bike, docked now is empty.
     !@docked ? raise('No bikes to release.') : @docked = false

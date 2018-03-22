@@ -4,7 +4,7 @@ describe DockingStation do
 
   # Defines a bike before each example.
   before(:each) do
-    @bike = subject.release_bike
+    @bike = DockingStation.new.release_bike
   end
 
   it "releases a bike that works." do
@@ -18,4 +18,8 @@ describe DockingStation do
     expect(subject.bike).to eq @bike
   end
 
+  it "raises exception if station is empty" do
+    subject.release_bike
+    expect { subject.release_bike }.to raise_exception 'No bikes to release.' # Bike released already
+  end
 end

@@ -4,7 +4,8 @@ describe DockingStation do
 
   # Defines a bike before each example.
   before(:each) do
-    @bike = subject.release_bike
+    @bike = Bike.new
+    subject.dock_bike(@bike)
   end
 
   it "releases a bike that works." do
@@ -14,16 +15,17 @@ describe DockingStation do
   it {is_expected.to respond_to(:dock_bike).with(1).argument}
 
   it "docks a bike" do
-    subject.dock_bike(@bike)
-    expect(subject.bike).to eq @bike
+    # Checks if the last element in array is the one last docked.
+    expect(subject.bike[-1]).to eq @bike
   end
 
   it "raises exception if station is empty when releasing" do
+    subject.release_bike
     expect { subject.release_bike }.to raise_exception "No bikes to release." # Bike released already
   end
 
   it "raises exception if docking bike when station is full" do
-    subject.dock_bike(@bike)
+    19.times { subject.dock_bike Bike.new}
     expect { subject.dock_bike(@bike)}.to raise_exception "Station is full."
   end
 end

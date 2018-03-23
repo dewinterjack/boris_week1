@@ -17,6 +17,16 @@ describe DockingStation do
     it "releases a bike that works." do
       expect(@bike.working?).to eq true
     end
+
+    it "does not release broken bikes" do
+      station = DockingStation.new
+      new_bike = Bike.new
+      another_bike = Bike.new
+      another_bike.report_broken
+      subject.dock_bike(new_bike)
+      subject.dock_bike(another_bike)
+      expect(subject.release_bike.broken).to eq false
+    end
   end
 
   describe "#dock_bike" do
@@ -33,6 +43,7 @@ describe DockingStation do
       reach_max.times { subject.dock_bike Bike.new}
       expect { subject.dock_bike(@bike)}.to raise_exception "Station is full."
     end
+
   end
 
   it "can be initialised with a default capacity" do

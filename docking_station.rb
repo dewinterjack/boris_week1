@@ -14,7 +14,14 @@ class DockingStation
 
   def release_bike
     # Nothing docked? Raise exception, otherwise release a bike, docked now is empty.
-    @bike.empty? ? raise("No bikes to release.") : @bike.pop
+    @bike.empty? ? raise("No bikes to release.") : next_working_bike
+  end
+
+  def next_working_bike
+    @bike.each do |abike|
+      bike.broken ? next : break
+    end
+    bike.broken ? raise("No working bikes.") : bike
   end
 
   def dock_bike(bike)

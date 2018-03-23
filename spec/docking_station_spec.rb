@@ -18,14 +18,27 @@ describe DockingStation do
     # Checks if the last element in array is the one last docked.
     expect(subject.bike[-1]).to eq @bike
   end
-
-  it "raises exception if station is empty when releasing" do
-    subject.release_bike
-    expect { subject.release_bike }.to raise_exception "No bikes to release." # Bike released already
+  describe "#release_bike" do
+    it "raises exception if station is empty when releasing" do
+      subject.release_bike
+      expect { subject.release_bike }.to raise_exception "No bikes to release." # Bike released already
+    end
   end
 
-  it "raises exception if docking bike when station is full" do
-    19.times { subject.dock_bike Bike.new}
-    expect { subject.dock_bike(@bike)}.to raise_exception "Station is full."
+  describe "#dock_bike" do
+    it "raises exception if bike is docked when station is full" do
+      reach_max = subject.capacity - 1 # Already created a bike in before each
+      reach_max.times { subject.dock_bike Bike.new}
+      expect { subject.dock_bike(@bike)}.to raise_exception "Station is full."
+    end
+  end
+
+  it "can be initialised with a default capacity" do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it "can be initialised with a custom capacity" do
+    station = DockingStation.new(5)
+    expect(station.capacity).to eq 5
   end
 end

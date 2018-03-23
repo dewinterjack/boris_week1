@@ -10,12 +10,12 @@ class DockingStation
 
   def release_bike
     # Nothing docked? Raise exception, otherwise release a bike, docked now is empty.
-    !@docked ? raise('No bikes to release.') : @docked = false
+    !@docked ? raise("No bikes to release.") : @docked = false
     @bike
   end
 
   def dock_bike(bike)
+    @docked ? raise("Station is full.") : @docked = true
     @bike = bike
   end
-
 end

@@ -16,7 +16,7 @@ class DockingStation
 
   def dock_bike(bike)
     # If there are less than 20 bikes, add it in.
-    @bike.full? ? raise("Station is full.") : @bike.push(bike)
+    full? ? raise("Station is full.") : @bike.push(bike)
   end
 
   private

@@ -35,7 +35,7 @@ describe DockingStation do
 
     it "docks a bike" do
       # Checks if the last element in array is the one last docked.
-      expect(subject.bike[-1]).to eq @bike
+      expect(subject.bikes[-1]).to eq @bike
     end
 
     it "raises exception if bike is docked when station is full" do
